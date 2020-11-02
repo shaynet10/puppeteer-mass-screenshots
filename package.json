@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-mass-screeshots",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package creates massive amount of screenshots automatically, using Chrome API screencast,",
   "main": "index.js",
   "scripts": {
