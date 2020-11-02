@@ -1,10 +1,14 @@
 {
-  "name": "puppeteer-mass-screeshots",
-  "version": "1.0.1",
+  "name": "puppeteer-mass-screenshots",
+  "version": "1.0.0",
   "description": "This package creates massive amount of screenshots automatically, using Chrome API screencast,",
   "main": "index.js",
   "scripts": {
     "test": "node ./tests/openGoogle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaynet10/puppeteer-mass-screenshots"
   },
   "keywords": [
     "screencast",
@@ -20,5 +24,6 @@
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "puppeteer": "^5.4.1"
-  }
+  },
+  "homepage": "://github.com/shaynet10/puppeteer-mass-screenshots"
 }
