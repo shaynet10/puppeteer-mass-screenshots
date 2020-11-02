@@ -1,0 +1,24 @@
+{
+  "name": "puppeteer-mass-screeshots",
+  "version": "1.0.0",
+  "description": "This package creates massive amount of screenshots automatically, using Chrome API screencast,",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./tests/openGoogle.js"
+  },
+  "keywords": [
+    "screencast",
+    "screenshot",
+    "burst",
+    "video",
+    "record",
+    "massive"
+  ],
+  "author": "Shay Gueta",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "puppeteer": "^5.4.1"
+  }
+}
