@@ -4,26 +4,38 @@
   "description": "This package creates massive amount of screenshots automatically, using Chrome API screencast,",
   "main": "index.js",
   "scripts": {
-    "test": "node ./tests/openGoogle.js"
+    "test": "cd tests; npm install; npm test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/shaynet10/puppeteer-mass-screenshots"
   },
   "keywords": [
+    "puppeteer",
+    "pptr",
+    "pptr.dev",
+    "mass",
+    "mas",
+    "huge",
+    "image",
+    "images",
     "screencast",
+    "screencasts",
+    "screenshots",
     "screenshot",
     "burst",
     "video",
+    "videos",
     "record",
+    "records",
+    "recording",
     "massive"
   ],
   "author": "Shay Gueta",
   "license": "MIT",
   "dependencies": {
     "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "puppeteer": "^5.4.1"
+    "path": "^0.12.7"
   },
   "homepage": "://github.com/shaynet10/puppeteer-mass-screenshots"
 }

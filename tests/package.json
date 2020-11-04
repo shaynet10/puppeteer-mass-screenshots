@@ -1,0 +1,30 @@
+{
+  "name": "puppteer-mass-screenshots-tests",
+  "version": "1.0.0",
+  "description": "The test folder is now separated from the main folder, in order to ansure we don't depend Puppeteer for whoever needs to just use the package as is.",
+  "main": "openGoogle.js",
+  "scripts": {
+    "test": "node ./openGoogle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaynet10/puppeteer-mass-screenshots.git"
+  },
+  "keywords": [
+    "puppeterr",
+    "mass",
+    "screenshot",
+    "screenshots",
+    "burst",
+    "test"
+  ],
+  "author": "Shay.Gueta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shaynet10/puppeteer-mass-screenshots/issues"
+  },
+  "homepage": "https://github.com/shaynet10/puppeteer-mass-screenshots#readme",
+  "dependencies": {
+    "puppeteer": "^5.4.1"
+  }
+}

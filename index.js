@@ -1,24 +1,23 @@
 const { join } = require('path');
 const fs = require('fs').promises;
-const puppeteer = require('puppeteer');
 const emptyFunction = async() => {};
 const defaultAfterWritingNewFile = async(filename) => console.log(`${filename} was written`);
 
 class PuppeteerMassScreenshots {
     async init(
-        outputFilesPath = '/tmp', 
+        page, 
+        outputFolder,
         options = {}
 ) {
     const runOptions = {
-        page: null,
         beforeWritingImageFile: emptyFunction,
         afterWritingImageFile: defaultAfterWritingNewFile,
         beforeAck: emptyFunction,
         afterAck: emptyFunction,
         ...options
     }
-        this.outputFilesPath = outputFilesPath;
-        this.page = runOptions.page || await this.getPage();
+        this.page = page;
+        this.outputFolder = outputFolder;
         this.client = await this.page.target().createCDPSession();
         this.canScreenshot = true;
         this.client.on('Page.screencastFrame', async (frameObject) => {
@@ -37,14 +36,8 @@ class PuppeteerMassScreenshots {
         });
     }
 
-    async getPage() {
-        this.browser = await puppeteer.launch();
-        const pages = await this.browser.pages();
-        return pages[0];
-    }
-
     async writeImageFilename(data) {
-        const filename = join(this.outputFilesPath, Date.now().toString() + '.jpg');
+        const filename = join(this.outputFolder, Date.now().toString() + '.jpg');
         await fs.writeFile(filename, data, 'base64');
         return filename;
     }
