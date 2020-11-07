@@ -51,5 +51,5 @@ the page object you already use with you Puppeteer run.
 a full path of an existing folder, to be used to save screenshots.
 
 ### options
-See our [Advanced options page](./options.md "Puppeteer mass screenshots - advanced options") 
+See our [Advanced options page](Options.md "Puppeteer mass screenshots - advanced options") 
 
