@@ -27,12 +27,29 @@ You can attach whatever you like to the page object.
 ## The manual
 Using this package is very simple.
 ### Example:
+```javascript
+// You'll probably want this code in some async init function
+const screenshotsPath = join(__dirname, 'images');
 const PuppeteerMassScreenshots = require('puppeteer-mass-screenshots');
 const screenshots = new PuppeteerMassScreenshots();
 await screenshots.init(page, screenshotsPath);
 
-page - the page object you already use with you Puppeteer run.
-outputFolder - put here the full path of an existing folder, that you want the screenshots to be created at.
+// Use the start function where you want to start taking screenshots
+await screenshots.start();
 
-And basically that's it.
+// Do some things with the page
+// Maybe some automation code
+
+await screenshots.stop(); // Do this before browser is closed
+
+```
+
+### page 
+the page object you already use with you Puppeteer run.
+
+### outputFolder
+a full path of an existing folder, to be used to save screenshots.
+
+### options
+See our [Advanced options page](./options.md "Puppeteer mass screenshots - advanced options") 
 
