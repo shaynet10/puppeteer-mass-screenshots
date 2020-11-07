@@ -9,7 +9,7 @@ The function should have **filename** as the first parameter, which will contain
 #### Example:
 ```javascript
 const options = {
-    afterWritingNewFile: async(filename) => console.log(`${filename} was written`)
+    afterWritingImageFile: async(filename) => console.log(`${filename} was written`)
 };
 await screenshots.init(page, screenshotsPath, options);
 ```
