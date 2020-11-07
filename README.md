@@ -1,31 +1,27 @@
 # puppeteer-mass-screenshots
+[FAQ](#FAQ "FAQ") | [Manual](#Manual "Manual") | [Options](Options.md "Options")
 
-## Common questions that you probably have
+<a name="FAQ"></a>
+## FAQ
 
 ### Does it work when Chrome is in headless mode?
-Yes, it does, it takes multiple screenshots when Chrome is in headless mode.
-If you want you can also run Puppeteer in headful mode, we also support that.
+Yes, it does, it supports Chrome is in headless mode, and in headful mode.
 
 ### Does it support redirections in pages?
-Yes, it does, because this solution is based on Chrome's API, 
+Yes, it does, this solution is based on Chrome's API, 
 which isn't affected by page's redirections.
-Which means, of course, you can do also whatever you like, 
-to the page/browser objects.
 
 ### Does it use the window object?
-No, this solution is based on Chrome's API, and not on the window object.
-You can do whatever you want to the window object on the client-side, 
-we don't use it at all.
+No, it doesn't use the window object.
 
 ### Can I run it run with my own page/browser objects?
-Yes, of course, you can.
-Put the page object in the init function, and we will use it.
-You can attach some browser.on(..) function before.
-You can attach whatever you like to the browser object.
-You can attach whatever you like to the page object.
+Yes, put the page object in the init function, and we will use it.
 
-## The manual
-Using this package is very simple.
+### Will it change my browser/page/window objects?
+No, it won't, we use Chrome's API only.
+
+<a name="Manual"></a>
+## Manual
 ### Example:
 ```javascript
 // You'll probably want this code in some async init function
