@@ -45,7 +45,7 @@ await screenshots.stop(); // Do this before browser is closed
 ```
 
 ### page 
-the page object you already use with you Puppeteer run.
+the page object you already use with your Puppeteer run.
 
 ### outputFolder
 a full path of an existing folder, to be used to save screenshots.
