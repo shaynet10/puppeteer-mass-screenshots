@@ -1,11 +1,11 @@
 # puppeteer-mass-screenshots
-[FAQ](#FAQ "FAQ") | [Manual](#Manual "Manual") | [Options](Options.md "Options")
+[FAQ](#FAQ "FAQ") | [Manual](#Manual "Manual") | [InitOptions](InitOptions.md "InitOptions") | [StartOptions](StartOptions.md "StartOptions")
 
 <a name="FAQ"></a>
 ## FAQ
 
 ### Does it work when Chrome is in headless mode?
-Yes, it does, it supports Chrome is in headless mode, and in headful mode.
+Yes, it does, it supports Chrome in headless mode, and in headful mode.
 
 ### Does it support redirections in pages?
 Yes, it does, this solution is based on Chrome's API, 
@@ -14,7 +14,7 @@ which isn't affected by page's redirections.
 ### Does it use the window object?
 No, it doesn't use the window object.
 
-### Can I run it run with my own page/browser objects?
+### Can I run it with my own page/browser objects?
 Yes, put the page object in the init function, and we will use it.
 
 ### Will it change my browser/page/window objects?
@@ -46,6 +46,8 @@ the page object you already use with your Puppeteer run.
 ### outputFolder
 a full path of an existing folder, to be used to save screenshots.
 
-### options
-See our [Advanced options page](Options.md "Puppeteer mass screenshots - advanced options") 
+### init options
+See our [Init options page](InitOptions.md "Puppeteer mass screenshots - init options") 
 
+### start options
+See our [Start options page](StartOptions.md "Puppeteer mass screenshots - start options")

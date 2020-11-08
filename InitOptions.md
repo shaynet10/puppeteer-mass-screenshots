@@ -1,4 +1,4 @@
-# puppeteer-mass-screenshots - options
+# puppeteer-mass-screenshots - init options
 ### beforeWritingImageFile
 Add any async code you want to be executed before each image is written to the destination folder.
 
