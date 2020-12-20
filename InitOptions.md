@@ -25,4 +25,4 @@ you can put any async code you want to be executed after this ack is sent.
 ### basic usage
 See our [main page](./README.md "Puppeteer mass screenshots") 
 
-
+### Thank you
