@@ -4,6 +4,7 @@
   "description": "The test folder is now separated from the main folder, in order to ansure we don't depend Puppeteer for whoever needs to just use the package as is.",
   "main": "openGoogle.js",
   "scripts": {
+    "init-images-path": "rm -rf ./images; mkdir -p ./images",
     "test": "node ./openGoogle.js"
   },
   "repository": {

@@ -4,7 +4,7 @@
   "description": "This package creates massive amount of screenshots automatically, using Chrome API screencast,",
   "main": "index.js",
   "scripts": {
-    "test": "cd tests; npm install; npm test"
+    "test": "cd tests; npm install; npm run init-images-path; npm run test"
   },
   "repository": {
     "type": "git",
