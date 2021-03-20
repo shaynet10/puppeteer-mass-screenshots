@@ -20,11 +20,14 @@ class PuppeteerMassScreenshots {
         this.outputFolder = outputFolder;
         this.client = await this.page.target().createCDPSession();
         this.canScreenshot = true;
+        this.lastFrame = new Date();
         this.client.on('Page.screencastFrame', async (frameObject) => {
             if (this.canScreenshot) {
                 await runOptions.beforeWritingImageFile();
+                let duration = (new Date() - this.lastFrameDate) / 1000;
+                this.lastFrameDate = new Date();
                 const filename = await this.writeImageFilename(frameObject.data); 
-                await runOptions.afterWritingImageFile(filename);
+                await runOptions.afterWritingImageFile(filename,duration);
                 try {
                     await runOptions.beforeAck();
                     await this.client.send('Page.screencastFrameAck', { sessionId: frameObject.sessionId});
