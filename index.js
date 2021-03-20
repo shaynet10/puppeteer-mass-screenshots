@@ -24,7 +24,7 @@ class PuppeteerMassScreenshots {
         this.client.on('Page.screencastFrame', async (frameObject) => {
             if (this.canScreenshot) {
                 await runOptions.beforeWritingImageFile();
-                let duration = (new Date() - this.lastFrameDate) / 1000;
+                let duration = (new Date() - this.lastFrame) / 1000;
                 this.lastFrameDate = new Date();
                 const filename = await this.writeImageFilename(frameObject.data); 
                 await runOptions.afterWritingImageFile(filename,duration);
