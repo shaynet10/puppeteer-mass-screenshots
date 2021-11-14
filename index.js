@@ -1,6 +1,6 @@
 const { join } = require('path');
 const fs = require('fs').promises;
-const emptyFunction = async() => {};
+const emptyFunction = async() => {/**/};
 const defaultAfterWritingNewFile = async(filename) => console.log(`${filename} was written`);
 
 class PuppeteerMassScreenshots {
@@ -14,8 +14,10 @@ class PuppeteerMassScreenshots {
         afterWritingImageFile: defaultAfterWritingNewFile,
         beforeAck: emptyFunction,
         afterAck: emptyFunction,
+        isSequentialFrameNaming: false,
         ...options
     }
+        this.isSequentialFrameNaming = runOptions.isSequentialFrameNaming;
         this.page = page;
         this.outputFolder = outputFolder;
         this.client = await this.page.target().createCDPSession();
@@ -37,7 +39,9 @@ class PuppeteerMassScreenshots {
     }
 
     async writeImageFilename(data) {
-        const filename = join(this.outputFolder, Date.now().toString() + '.jpg');
+        this.frameNumber = this.frameNumber === undefined ? 0 : this.frameNumber + 1;
+        const basename = this.isSequentialFrameNaming ? 'frame' + this.frameNumber.toString().padStart(6, '0') : Date.now();
+        const filename = join(this.outputFolder, basename + this.extension);
         await fs.writeFile(filename, data, 'base64');
         return filename;
     }
@@ -51,6 +55,7 @@ class PuppeteerMassScreenshots {
             everyNthFrame: 1,
             ...options
         };
+        this.extension = `.${startOptions.format}`
         return this.client.send('Page.startScreencast', startOptions);
     }
 
