@@ -25,8 +25,12 @@ class PuppeteerMassScreenshots {
         this.client.on('Page.screencastFrame', async (frameObject) => {
             if (this.canScreenshot) {
                 await runOptions.beforeWritingImageFile();
-                const filename = await this.writeImageFilename(frameObject.data); 
-                await runOptions.afterWritingImageFile(filename);
+                if (this.isSequentialFrameNaming) {
+                    this.cachedFrame = frameObject.data;
+                } else {
+                    const filename = await this.writeImageFilename(frameObject.data);
+                    await runOptions.afterWritingImageFile(filename);
+                }
                 try {
                     await runOptions.beforeAck();
                     await this.client.send('Page.screencastFrameAck', { sessionId: frameObject.sessionId});
@@ -38,7 +42,19 @@ class PuppeteerMassScreenshots {
         });
     }
 
-    async writeImageFilename(data) {
+    async writeImageFilename(data = this.cachedFrame) {
+        if (!data) {
+            data = await this.page.screenshot({
+                clip: {
+                    x: 0,
+                    y: 0,
+                    width: this.maxWidth,
+                    height: this.maxHeight
+                },
+                omitBackground: false
+            })
+        }
+        if (!this.cachedFrame) this.cachedFrame = data;
         this.frameNumber = this.frameNumber === undefined ? 0 : this.frameNumber + 1;
         const basename = this.isSequentialFrameNaming ? 'frame' + this.frameNumber.toString().padStart(6, '0') : Date.now();
         const filename = join(this.outputFolder, basename + this.extension);
@@ -55,7 +71,9 @@ class PuppeteerMassScreenshots {
             everyNthFrame: 1,
             ...options
         };
-        this.extension = `.${startOptions.format}`
+        this.extension = `.${startOptions.format}`;
+        this.maxWidth = startOptions.maxWidth;
+        this.maxHeight = startOptions.maxHeight;
         return this.client.send('Page.startScreencast', startOptions);
     }
 
