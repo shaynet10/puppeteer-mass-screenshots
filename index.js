@@ -85,6 +85,7 @@ class PuppeteerMassScreenshots {
     }
 
     async stop() {
+        this.frameNumber = undefined;
         return this.client.send('Page.stopScreencast');
     }
 }
