@@ -3,6 +3,11 @@ const fs = require('fs').promises;
 const emptyFunction = async() => {/**/};
 const defaultAfterWritingNewFile = async(filename) => console.log(`${filename} was written`);
 
+const assert = (value, message) => {
+    if (!value)
+        throw new Error(message);
+};
+
 class PuppeteerMassScreenshots {
     async init(
         page, 
@@ -45,6 +50,7 @@ class PuppeteerMassScreenshots {
     async writeImageFilename(data = this.cachedFrame) {
         if (!data) {
             data = await this.page.screenshot({
+                type: this.format,
                 clip: {
                     x: 0,
                     y: 0,
@@ -57,7 +63,7 @@ class PuppeteerMassScreenshots {
         if (!this.cachedFrame) this.cachedFrame = data;
         this.frameNumber = this.frameNumber === undefined ? 0 : this.frameNumber + 1;
         const basename = this.isSequentialFrameNaming ? 'frame' + this.frameNumber.toString().padStart(6, '0') : Date.now();
-        const filename = join(this.outputFolder, basename + this.extension);
+        const filename = join(this.outputFolder, basename + '.' + this.format);
         await fs.writeFile(filename, data, 'base64');
         return filename;
     }
@@ -71,7 +77,8 @@ class PuppeteerMassScreenshots {
             everyNthFrame: 1,
             ...options
         };
-        this.extension = `.${startOptions.format}`;
+        assert(startOptions.format === 'png' || startOptions.format === 'jpeg', 'Unknown options.format value: ' + startOptions.format);
+        this.format = startOptions.format;
         this.maxWidth = startOptions.maxWidth;
         this.maxHeight = startOptions.maxHeight;
         return this.client.send('Page.startScreencast', startOptions);
