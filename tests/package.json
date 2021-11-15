@@ -5,6 +5,7 @@
   "main": "openGoogle.js",
   "scripts": {
     "init-images-path": "rm -rf ./images; mkdir -p ./images",
+    "test-sequential": "node ./openGoogleSequential.js",
     "test": "node ./openGoogle.js"
   },
   "repository": {
